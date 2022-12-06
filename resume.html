@@ -26,11 +26,32 @@
     font-size: 14px;
     color: black;
   }
-  
+    
   h2 {
-    margin-bottom: 5px;
+    position: relative;
+    margin-bottom: 0px;
   }
 
+  h2::before {
+    background-color: #aad2f5db;
+    content: "";
+    position: absolute;
+    height: 100%;
+    background-image: linear-gradient(to left, rgb(255 0 0 / 0%), rgba(0,0,0,0));
+    left: -55px;
+    bottom: 0;
+    z-index: -1;
+    border-radius: 25px;
+  }
+
+  #left h2::before {
+    width: 35px;
+  }
+
+  #right h2::before {
+    width: 35px;
+  }
+    
   h3, p, ul {
     margin-bottom: 5px;
     margin-top: 5px;
@@ -61,6 +82,7 @@
   #left a {
     padding-left: 15px;
     text-decoration: none;
+    font-weight: normal;
   }
 
   .material-symbols-outlined {
@@ -103,30 +125,6 @@
     transform: rotate(-2deg);
   }
 
-  h2 {
-    position: relative;
-  }
-
-  h2::before {
-    background-color: #aad2f5db;
-    content: "";
-    position: absolute;
-    height: 100%;
-    background-image: linear-gradient(to left, rgb(255 0 0 / 0%), rgba(0,0,0,0));
-    left: -55px;
-    bottom: 0;
-    z-index: -1;
-    border-radius: 25px;
-  }
-
-  #left h2::before {
-    width: 35px;
-  }
-
-  #right h2::before {
-    width: 35px;
-  }
-    
   .details {
     display: flex;
     flex-direction: row;
@@ -141,8 +139,54 @@
 
   .title, .startend {
     font-weight: bold;
+    letter-spacing: 0.3px;
+    margin-top: 20px;
+    margin-bottom: 5px;
   }
 
+  .thpadding {
+    padding-bottom: 8px;
+  }
+
+  th {
+    text-align: left !important;
+  }
+
+  /* Print CSS */
+  @media print {
+    #left {
+      max-width: 100%;
+    }
+
+    body {
+      margin: 50px 50px;
+    }
+
+    h2 {
+      font-size: 14px;
+    }
+
+    p, li {
+      font-size: 11px;
+    }
+
+    #right {
+      page-break-before: always;
+    }
+
+    #LinkedIn, #GitHub, #Tableau {
+      display: none;
+    }
+
+    .tableicons {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .title, .startend {
+      margin-top: 10px;
+    }
+  }
 </style>
 
 <body>
@@ -154,18 +198,36 @@
   </div>
   
   <div id="icons">
-    <span class="material-symbols-outlined">phone_iphone</span> <a href="tel:+61 481 831 605">+61 481 831 605</a>
-    <br>
-    <span class="material-symbols-outlined">mail</span> <a href="mailto:clementz.c@gmail.com">clementz.c@gmail.com</a>
-    <br>
-    <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" style="width: 20px;"> <a href="https://github.com/clemmis">GitHub</a>
-    <br>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/LinkedIn_icon_circle.svg/2048px-LinkedIn_icon_circle.svg.png" alt="LinkedIn" style="width: 20px;"> <a href="https://www.linkedin.com/in/christineclementz/">LinkedIn Profile</a>
-    <br>
+    <table class="tableicons">
+      <tr id="telephone">
+        <th><span id="phoneicon" class="material-symbols-outlined">phone_iphone</span></th>
+        <th class="thpadding"><a href="tel:+61 481 831 605">+61 481 831 605</a></th>
+      </tr>
+
+      <tr id="mail">
+        <th><span id="mailicon" class="material-symbols-outlined">mail</span></th>
+        <th class="thpadding"><a href="mailto:clementz.c@gmail.com">clementz.c@gmail.com</a></th>
+      </tr>
+
+      <tr id="GitHub">
+        <th><img class="icon" src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" style="width: 20px;"></th>
+        <th class="thpadding"><a href="https://github.com/clemmis" target="_blank">GitHub</a></a></th>
+      </tr>
+
+      <tr id="LinkedIn">
+        <th><img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/LinkedIn_icon_circle.svg/2048px-LinkedIn_icon_circle.svg.png" alt="LinkedIn" style="width: 20px;"></th>
+        <th class="thpadding"><a href="https://www.linkedin.com/in/christineclementz/" target="_blank">LinkedIn Profile</a></th>
+      </tr>
+
+      <tr id="Tableau">
+        <th><img src="https://cdn.iconscout.com/icon/free/png-256/tableau-5376637-4489897.png" alt="Tableau" style="width: 20px;"></th>
+        <th class="thpadding"><a href="https://public.tableau.com/app/profile/christine.clementz/viz/ChristinesInteractiveResume/Resume" target="_blank">Interactive Resume on Tableu</a></th>
+      </tr>
+    </table>
   </div>
 
   <h2>Profile</h2>
-  <p>Creative, analytical thinker with international experience in university, corporate and community organisations. Passionate about all things tech, with particular interest in IoT, business analytics and the world of Cloud. Brings excellent organisational and communication skills and a strong work ethic.</p>
+  <p>Creative, analytical thinker with international experience in university, corporate and community organisations. Passionate about all things tech, with particular interest in software development, IoT, business analytics and the world of Cloud. Brings excellent organisational and communication skills and a strong work ethic.</p>
   
   <h2>Languages</h2>
   <p>English - Fluent</p>
@@ -173,23 +235,24 @@
 
   <h2>Leadership</h2>
   <h3>Board member, Swedish-Australian Chamber of Commerce, Perth Chapter</h3>
-  <p>May 2018 – Present</p>
+  <p>May 2018 – January 2023</p>
   <h3>Committee Secretary, Swedish Club of Western Australia</h3>
   <p>August 2016 – October 2018</p>
   <h3>Toastmasters UWA</h3>
-  <p>Throughout Master's degree - 2022 to 2023</p>
+  <p>Throughout Master's degree - 2021 to 2022</p>
   <h3>Speechcraft Public Speaking</h3>
   <p>Short course 2021</p>
 
   <h2>Interests</h2>
   <ul>
+    <li>Learning!</li>
     <li>Data Visualisation - Tableau, Power BI</li>
     <li>Cloud Technologies</li>
     <li>Internet of Things</li>
     <li>Adobe Creative Suite - Photoshop, InDesign, Illustrator, Premiere Pro</li>
-    <li>Web Development = HTML, CSS, JavaScript, Flask, Django</li>
+    <li>Web Development - HTML, CSS, JavaScript, Flask, Django</li>
     <li>Programming - Java, Python</li>
-    <li>Non tech related - photography and books</li>
+    <li>Non tech related interests include photography, reading, podcasts and tending to my rescue greyhound Penny.</li>
   </ul>
 
   <h2>References</h2>
@@ -199,6 +262,15 @@
 <div class="item" id="right">
   <div id="experience">
     <h2>Experience</h2>
+
+    <div class="details">
+      <p class="title">Consulting Internship, Cloud & Infrastructure Technology, Deloitte</p>
+      <p class="startend">January 2022 - February 2022</p>
+    </div>
+    <ul>
+      <li>Assisted with cloud migration assessment activities</li>
+      <li>Presented my learnings to the national cohort of interns within the Core Business unit and to the local office</li>
+    </ul>
 
     <div class="details">
       <p class="title">Programs and IT Operations Officer, Teach Well</p>
@@ -252,22 +324,33 @@
   </div>
 
   <div id="education">
-    <h2>Education & Course Work</h2>
+    <h2>Education</h2>
 
     <div class="details">
       <p class="title">Master of Information Technology, University of Western Australia</p>
       <p class="startend">2021 - 2022</p>
     </div>
+    <p>Graduated with Distinction in December 2022.</p>
+    <p>Extracurricular activities:</p>
+    <ul>
+      <li>Early Careers Innovation Program, Amazon Web Services</li>
+      <li>Class representative for three units (CITS4401 Software Requirements and Design, CITS5501 Software Testing and Quality Assurance, CITS5505 Agile Web Development)</li>
+      <li>Global Leader Experience UWA (a 7-day intensive purpose-driven business course organised by Common Purpose)</li>
+      <li>Postgraduate UniMentor Program (mentoring of postgraduate students as they commence their Master in Information Technology)</li>
+      <li>Global Citizenship UWA (a four week sustainability focused course organised by Common Purpose)</li>
+      <li>McGrathNicol Mentoring Program for Women in Business</li>
+    </ul>
 
     <div class="details">
-      <p class="title">Project Management, Stockholm University</p>
-      <p class="startend">January - December 2017</p>
-    </div>
-
-    <div class="details">
-      <p class="title">Bachelor of Science (Applied Social Research), Stockholm University</p>
+      <p class="title">Bachelor of Applied Social Research, Stockholm University</p>
       <p class="startend">2013 - 2016</p>
     </div>
+    <p>Graduated in April 2016.</p>
+    <p>Extracurricular activities:</p>
+    <ul>
+      <li>Language café (attended weekly to practice modern Greek - I am still terrible, but I'm working on it)</li>
+      <li>International buddy program</li>
+    </ul>
 
   </div>
 
